@@ -1,0 +1,36 @@
+[user]
+	name = Ali Sajid Imami
+	email = Ali.Sajid.Imami@gmail.com
+	signingKey = 60874D9F
+[core]
+	autocrlf = input
+	excludesfile = /Users/asimami/.gitignore_global
+	editor = code --wait
+[commit]
+	gpgsign = true
+[tag]
+	gpgsign = true
+	forceSignAnnotated = false
+[alias]
+  co = checkout
+  ci = commit
+  st = status
+  br = branch
+  hist = log --pretty=format:\"%C(auto)%h %ad | %s%d %C(red)[%an]%C(reset) | GPG Sig: %C(auto,yellow)%GK (%G?)\" --graph --date=short
+  type = cat-file -t
+  dump = cat-file -p
+[log]
+	decorate = full
+[init]
+	defaultBranch = main
+[pull]
+	rebase = true
+[gpg]
+	program = gpg
+[http]
+	postBuffer = 524288000
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
