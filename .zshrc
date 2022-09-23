@@ -114,9 +114,7 @@ aws
 colorize
 docker
 cp
-osx
 tmux
-go
 terraform
 zsh-autosuggestions
 zsh-syntax-highlighting
