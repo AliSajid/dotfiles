@@ -24,3 +24,7 @@ for f in $files; do
         echo ln -s "$f" "$target"
     fi
 done
+
+echo "Setting `gp` as the git credential helper"
+
+echo git config credential.helper "/usr/bin/gp credential-helper"
