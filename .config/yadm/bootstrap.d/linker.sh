@@ -5,28 +5,32 @@ set -euo pipefail
 echo "Bootstrapping the system with dotfiles"
 echo "Starting Directory: $(pwd)"
 
-files=$(find '~/.dotfiles' -type f -not -path '*/.git/*' | grep -v README | grep -v LICENSE)
+files=$(find '.dotfiles' -type f -not -path '*/.git/*' | grep -v README | grep -v LICENSE | grep -v bootstrap | cut -d'/' -f2-)
 
 for f in $files; do
     echo "Processing $f"
     basedir=$(dirname $f)
     filename=$(basename $f)
-    target="$HOME/$basedir/$filename"
+    targetdir="$HOME/$basedir"
+    target="$targetdir/$filename"
 
-    if [ ! -d $basedir ]; then
-        echo "$basedir does not exist, creating"
-        mkdir -p $basedir
+    if [ ! -d $targetdir ]; then
+        echo "$targetdir does not exist, creating"
+        mkdir -p $targetdir
+    else
+        echo "$targetdir exists. Skipping"
     fi
 
     if [ -f "$target" ] ; then
-        echo "$target already exists, moving to $target.bak"
-        echo mv "$target" "$target.bak"
+        echo "$target already exists, moving to $target.pre-bootstrap"
+        mv "$target" "$target.pre-bootstrap"
+        ln -sf "$HOME/.dotfiles/$f" "$target"
     else
         echo "$target does not exist, linking"
-        echo ln -s "$f" "$target"
+        ln -sf "$HOME/.dotfiles/$f" "$target"
     fi
 done
 
-echo "Setting `gp` as the git credential helper"
+echo "Setting 'gp' as the git credential helper"
 
 echo git config credential.helper "/usr/bin/gp credential-helper"
