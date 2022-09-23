@@ -169,9 +169,6 @@ alias grep="grep -i"
 
 fpath=(~/.zsh/Completion $fpath)
 
-export PATH="$HOME/.jenv/bin:$PATH"
-_evalcache jenv init -
-
 # Rust Path Configuration
 RUST_SRC_PATH=$(rustc --print sysroot)/lib/rustlib/src/rust/library/; export RUST_SRC_PATH;
 
@@ -190,7 +187,7 @@ complete -o nospace -C /usr/local/bin/terraform terraform
 
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
 
-if [[ -f "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc" && -f "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc" ]]; then
+if [[g -f "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc" && -f "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc" ]]; then
   source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"  
   source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
 fi
