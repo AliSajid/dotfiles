@@ -2,11 +2,13 @@
 
 set -euo pipefail
 
-echo "$(pwd)"
+echo "Bootstrapping the system with dotfiles"
+echo "Starting Directory: $(pwd)"
 
-files=$(find . -type f -not -path '*/.git/*' | grep -v README | grep -v LICENSE)
+files=$(find '~/.dotfiles' -type f -not -path '*/.git/*' | grep -v README | grep -v LICENSE)
 
 for f in $files; do
+    echo "Processing $f"
     basedir=$(dirname $f)
     filename=$(basename $f)
     target="$HOME/$basedir/$filename"
