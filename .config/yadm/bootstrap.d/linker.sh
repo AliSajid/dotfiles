@@ -9,7 +9,7 @@ files=$(find . -type f -not -path '*/.git/*' | grep -v README | grep -v LICENSE)
 for f in $files; do
     basedir=$(dirname $f)
     filename=$(basename $f)
-    target="$MYHOME/$basedir/$filename"
+    target="$HOME/$basedir/$filename"
 
     if [ ! -d $basedir ]; then
         echo "$basedir does not exist, creating"
