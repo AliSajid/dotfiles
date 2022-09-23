@@ -157,7 +157,11 @@ alias vim="nvim"
 alias vimdiff="nvim -d"
 alias zshconfig="vim ~/$ZDOTDIR/.zshrc"
 alias zshreload="source ~/$ZDOTDIR/.zshrc"
-alias find=gfind
+
+if [[ -f "/usr/local/bin/gfind" ]]; then
+  alias find="/usr/local/bin/gfind"
+fi
+
 alias cat=bat
 alias ping=prettyping
 alias man=tldr
@@ -171,7 +175,7 @@ _evalcache jenv init -
 # Rust Path Configuration
 RUST_SRC_PATH=$(rustc --print sysroot)/lib/rustlib/src/rust/library/; export RUST_SRC_PATH;
 
-[ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env" # ghcup-env
+[[ -f "$HOME/.ghcup/env" ]] && source "$HOME/.ghcup/env" # ghcup-env
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
@@ -184,14 +188,14 @@ _evalcache direnv hook zsh
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/terraform terraform
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
 
 if [-f "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc" && -f "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"]; then
   source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"  
   source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
 fi
 
-if [-f "/usr/local/opt/asdf/libexec/asdf.sh"]; then
+if [[ -f "/usr/local/opt/asdf/libexec/asdf.sh" ]]; then
   . /usr/local/opt/asdf/libexec/asdf.sh
 fi
 
