@@ -109,7 +109,6 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(evalcache
 poetry
-git
 npm
 aws
 colorize
