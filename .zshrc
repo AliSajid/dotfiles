@@ -4,7 +4,7 @@ export GOPATH=~/experiments/go
 export PATH=/usr/local/sbin:$GOPATH/bin:$HOME/.local/bin:$HOME/bin:$PATH:${HOME}/.krew/bin:${HOME}/.rd/bin
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/asimami/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -173,11 +173,11 @@ _evalcache jenv init -
 # Rust Path Configuration
 RUST_SRC_PATH=$(rustc --print sysroot)/lib/rustlib/src/rust/library/; export RUST_SRC_PATH;
 
-[ -f "/Users/asimami/.ghcup/env" ] && source "/Users/asimami/.ghcup/env" # ghcup-env
+[ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env" # ghcup-env
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/asimami/.sdkman"
-[[ -s "/Users/asimami/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/asimami/.sdkman/bin/sdkman-init.sh"
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 # Hook direnv
 _evalcache direnv hook zsh
@@ -188,11 +188,14 @@ complete -o nospace -C /usr/local/bin/terraform terraform
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
-source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
-#zprof
+if [-f "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc" && -f "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"]; then
+  source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"  
+  source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
+fi
 
-. /usr/local/opt/asdf/libexec/asdf.sh
+if [-f "/usr/local/opt/asdf/libexec/asdf.sh"]; then
+  . /usr/local/opt/asdf/libexec/asdf.sh
+fi
 
 # Confiuring build options for asdf R
 R_EXTRA_CONFIGURE_OPTIONS='--enable-R-shlib --with-cairo'
