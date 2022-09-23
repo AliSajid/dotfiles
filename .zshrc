@@ -158,8 +158,8 @@ fi
 alias ctags="`brew --prefix`/bin/ctags"
 alias vim="nvim"
 alias vimdiff="nvim -d"
-alias zshconfig="vim ~/dotfiles/zsh/.zshrc"
-alias zshreload="source ~/dotfiles/zsh/.zshrc"
+alias zshconfig="vim ~/$ZDOTDIR/.zshrc"
+alias zshreload="source ~/$ZDOTDIR/.zshrc"
 alias find=gfind
 alias cat=bat
 alias ping=prettyping
@@ -175,9 +175,6 @@ _evalcache jenv init -
 RUST_SRC_PATH=$(rustc --print sysroot)/lib/rustlib/src/rust/library/; export RUST_SRC_PATH;
 
 [ -f "/Users/asimami/.ghcup/env" ] && source "/Users/asimami/.ghcup/env" # ghcup-env
-
-# Nextflow Tower
-export TOWER_ACCESS_TOKEN="eyJ0aWQiOiAzMjAyfS5mOGVjNDA1ODViZWZiNzc2Mzc1MWViOGFlZGUxMjYyMTEwY2I2MTAw"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/Users/asimami/.sdkman"
