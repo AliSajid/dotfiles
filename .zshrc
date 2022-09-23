@@ -160,6 +160,8 @@ alias zshreload="source ~/$ZDOTDIR/.zshrc"
 
 if [[ -f "/usr/local/bin/gfind" ]]; then
   alias find="/usr/local/bin/gfind"
+  else
+  alias find="find"
 fi
 
 alias cat=bat
