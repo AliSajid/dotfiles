@@ -30,7 +30,3 @@ for f in $files; do
         ln -sf "$HOME/.dotfiles/$f" "$target"
     fi
 done
-
-echo "Setting 'gp' as the git credential helper"
-
-git config credential.helper "/usr/bin/gp credential-helper"
