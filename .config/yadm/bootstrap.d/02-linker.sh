@@ -33,4 +33,4 @@ done
 
 echo "Setting 'gp' as the git credential helper"
 
-echo git config credential.helper "/usr/bin/gp credential-helper"
+git config credential.helper "/usr/bin/gp credential-helper"
