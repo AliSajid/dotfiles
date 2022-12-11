@@ -10,7 +10,7 @@
 	gpgsign = true
 [tag]
 	gpgsign = true
-	forceSignAnnotated = false
+	forceSignAnnotated = true
 [alias]
   co = checkout
   ci = commit
