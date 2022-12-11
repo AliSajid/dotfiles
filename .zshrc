@@ -184,7 +184,7 @@ export SDKMAN_DIR="$HOME/.sdkman"
 _evalcache direnv hook zsh
 
 
-autoload -U +X bashcompinit && bashcompinit
+autoload -U +X bashcompinit && bashcompinit -D
 complete -o nospace -C /usr/local/bin/terraform terraform
 
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
@@ -200,3 +200,6 @@ fi
 
 # Confiuring build options for asdf R
 R_EXTRA_CONFIGURE_OPTIONS='--enable-R-shlib --with-cairo'
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
