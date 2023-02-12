@@ -60,7 +60,6 @@ SPACESHIP_PROMPT_ORDER=(
   haskell       # Haskell Stack section
   docker        # Docker section
   aws           # Amazon Web Services section
-  kubectl       # Kubectl context section
   terraform     # Terraform workspace section
   exec_time     # Execution time
   line_sep      # Line break
@@ -157,12 +156,20 @@ alias vim="nvim"
 alias vimdiff="nvim -d"
 alias zshconfig="vim ~/$ZDOTDIR/.zshrc"
 alias zshreload="source ~/$ZDOTDIR/.zshrc"
+alias R="radian"
 
 if [[ -f "/usr/local/bin/gfind" ]]; then
   alias find="/usr/local/bin/gfind"
   else
   alias find="find"
 fi
+
+if [[ -f "/usr/local/bin/localstack" ]]; then
+  export LOCALSTACK_API_KEY="7vqHQgklrf"
+  export DNS_LOCAL_NAME_PATTERNS='.*(ecr|lambda).*.amazonaws.com'
+  export DNS_ADDRESS=0
+fi
+
 
 alias cat=bat
 alias ping=prettyping
@@ -203,3 +210,9 @@ R_EXTRA_CONFIGURE_OPTIONS='--enable-R-shlib --with-cairo'
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+export GPG_TTY=$(tty)
+
+# pnpm
+export PNPM_HOME="/Users/asimami/Library/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+# pnpm end
