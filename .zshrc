@@ -1,7 +1,7 @@
 #zmodload zsh/zprof
 # If you come from bash you might have to change your $PATH.
 export GOPATH=~/experiments/go
-export PATH=/usr/local/sbin:$GOPATH/bin:$HOME/.local/bin:$HOME/bin:$PATH:${HOME}/.krew/bin:${HOME}/.rd/bin
+export PATH=/usr/local/sbin:$GOPATH/bin:$HOME/.local/bin:$HOME/bin:$PATH:${HOME}/.krew/bin
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -55,7 +55,6 @@ SPACESHIP_PROMPT_ORDER=(
   git           # Git section (git_branch + git_status)
   package       # Package version
   node          # Node.js section
-  ruby          # Ruby section
   rust          # Rust section
   haskell       # Haskell Stack section
   docker        # Docker section
@@ -150,13 +149,17 @@ fi
 #
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+alias ohmyzsh="vim ~/.oh-my-zsh"
 alias ctags="`brew --prefix`/bin/ctags"
 alias vim="nvim"
 alias vimdiff="nvim -d"
-alias zshconfig="vim ~/$ZDOTDIR/.zshrc"
-alias zshreload="source ~/$ZDOTDIR/.zshrc"
+alias zshconfig="vim $ZDOTDIR/.zshrc"
+alias zshreload="source $ZDOTDIR/.zshrc"
 alias R="radian"
+alias cat=bat
+alias ping=prettyping
+alias man=tldr
+alias grep="grep -i"
 
 if [[ -f "/usr/local/bin/gfind" ]]; then
   alias find="/usr/local/bin/gfind"
@@ -171,11 +174,6 @@ if [[ -f "/usr/local/bin/localstack" ]]; then
 fi
 
 
-alias cat=bat
-alias ping=prettyping
-alias man=tldr
-alias grep="grep -i"
-
 fpath=(~/.zsh/Completion $fpath)
 
 # Rust Path Configuration
@@ -183,13 +181,8 @@ RUST_SRC_PATH=$(rustc --print sysroot)/lib/rustlib/src/rust/library/; export RUS
 
 [[ -f "$HOME/.ghcup/env" ]] && source "$HOME/.ghcup/env" # ghcup-env
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-
 # Hook direnv
 _evalcache direnv hook zsh
-
 
 autoload -U +X bashcompinit && bashcompinit -D
 complete -o nospace -C /usr/local/bin/terraform terraform
@@ -204,9 +197,6 @@ fi
 if [[ -f "/usr/local/opt/asdf/libexec/asdf.sh" ]]; then
   . /usr/local/opt/asdf/libexec/asdf.sh
 fi
-
-# Confiuring build options for asdf R
-R_EXTRA_CONFIGURE_OPTIONS='--enable-R-shlib --with-cairo'
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
