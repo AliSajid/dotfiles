@@ -1,7 +1,7 @@
 #zmodload zsh/zprof
 # If you come from bash you might have to change your $PATH.
 export GOPATH=~/experiments/go
-export PATH=/usr/local/sbin:$GOPATH/bin:$HOME/.local/bin:$HOME/bin:$PATH:${HOME}/.krew/bin
+export PATH=/usr/local/sbin:$GOPATH/bin:$HOME/.local/bin:$HOME/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -48,24 +48,24 @@ SPACESHIP_HOST_SHOW="always"
 SPACESHIP_HOST_SUFFIX=" ready "
 
 SPACESHIP_PROMPT_ORDER=(
-  time          # Time stamps section
-  dir           # Current directory section
-  host          # Hostname section
-  user          # Username section
-  git           # Git section (git_branch + git_status)
-  package       # Package version
-  node          # Node.js section
-  rust          # Rust section
-  haskell       # Haskell Stack section
-  docker        # Docker section
-  aws           # Amazon Web Services section
-  terraform     # Terraform workspace section
-  exec_time     # Execution time
-  line_sep      # Line break
-  battery       # Battery level and status
-  exit_code     # Exit code section
-  jobs          # Background jobs indicator
-  char          # Prompt character
+  time      # Time stamps section
+  dir       # Current directory section
+  host      # Hostname section
+  user      # Username section
+  git       # Git section (git_branch + git_status)
+  package   # Package version
+  node      # Node.js section
+  rust      # Rust section
+  haskell   # Haskell Stack section
+  docker    # Docker section
+  aws       # Amazon Web Services section
+  terraform # Terraform workspace section
+  exec_time # Execution time
+  line_sep  # Line break
+  battery   # Battery level and status
+  exit_code # Exit code section
+  jobs      # Background jobs indicator
+  char      # Prompt character
 )
 
 # Uncomment the following line to use hyphen-insensitive completion.
@@ -105,20 +105,39 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(evalcache
-poetry
-npm
-aws
-colorize
-docker
-cp
-tmux
-terraform
-zsh-autosuggestions
-zsh-syntax-highlighting
+plugins=(
+  asdf
+  aws
+  colorize
+  command-not-found
+  cp
+  cp
+  direnv
+  docker
+  dotenv
+  evalcache
+  gh
+  gpg-agent
+  hitchhiker
+  iterm2
+  multipass
+  nmap
+  npm
+  poetry
+  safe-paste
+  ssh-agent
+  terraform
+  tmux
+  urltools
+  z
+  zsh-autosuggestions
+  zsh-syntax-highlighting
 )
 
 export ZSH_COMPDUMP="$ZDOTDIR/.zcompdump-${SHORT_HOST}-${ZSH_VERSION}"
+
+# Configure ssh-agent plugin
+zstyle :omz:plugins:ssh-agent agent-forwarding yes
 
 source $ZSH/oh-my-zsh.sh
 
@@ -150,20 +169,22 @@ fi
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
-alias ctags="`brew --prefix`/bin/ctags"
+alias ctags="$(brew --prefix)/bin/ctags"
 alias vim="nvim"
 alias vimdiff="nvim -d"
-alias zshconfig="vim $ZDOTDIR/.zshrc"
-alias zshreload="source $ZDOTDIR/.zshrc"
+alias zshconfig="vim ${ZDOTDIR:-$HOME}/.zshrc"
+alias zshreload="source ${ZDOTDIR:-$HOME}/.zshrc"
 alias R="radian"
-alias cat=bat
-alias ping=prettyping
-alias man=tldr
+alias cat="bat"
+alias ping="prettyping"
+alias man="tldr"
 alias grep="grep -i"
 
-if [[ -f "/usr/local/bin/gfind" ]]; then
-  alias find="/usr/local/bin/gfind"
-  else
+if [[ -f "/opt/homebrew/bin/fd" ]]; then
+  alias find="/opt/homebrew/bin/fd"
+elif [[ -f "/usr/bin/gfind" ]]; then
+  alias find="/usr/bin/gfind"
+else
   alias find="find"
 fi
 
@@ -173,11 +194,11 @@ if [[ -f "/usr/local/bin/localstack" ]]; then
   export DNS_ADDRESS=0
 fi
 
-
 fpath=(~/.zsh/Completion $fpath)
 
 # Rust Path Configuration
-RUST_SRC_PATH=$(rustc --print sysroot)/lib/rustlib/src/rust/library/; export RUST_SRC_PATH;
+RUST_SRC_PATH=$(rustc --print sysroot)/lib/rustlib/src/rust/library/
+export RUST_SRC_PATH
 
 [[ -f "$HOME/.ghcup/env" ]] && source "$HOME/.ghcup/env" # ghcup-env
 
@@ -190,19 +211,15 @@ complete -o nospace -C /usr/local/bin/terraform terraform
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
 
 if [[ -f "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc" && -f "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc" ]]; then
-  source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"  
+  source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
   source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
-fi
-
-if [[ -f "/usr/local/opt/asdf/libexec/asdf.sh" ]]; then
-  . /usr/local/opt/asdf/libexec/asdf.sh
 fi
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 export GPG_TTY=$(tty)
 
-# pnpm
-export PNPM_HOME="/Users/asimami/Library/pnpm"
-export PATH="$PNPM_HOME:$PATH"
-# pnpm end
+# # pnpm
+# export PNPM_HOME="/Users/asimami/Library/pnpm"
+# export PATH="$PNPM_HOME:$PATH"
+# # pnpm end
